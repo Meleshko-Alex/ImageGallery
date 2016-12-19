@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class ImageGalleryFragment extends Fragment{
     private RecyclerView mRecyclerView;
     private ArrayList<String> filePaths;
-    RecyclerViewAdapter adapter;
+    private RecyclerViewAdapter adapter;
 
     public static ImageGalleryFragment newInstance(){
         return  new ImageGalleryFragment();
@@ -36,12 +36,10 @@ public class ImageGalleryFragment extends Fragment{
             adapter = new RecyclerViewAdapter(getActivity());
             mRecyclerView.setAdapter(adapter);
         }else{
+            filePaths = ImageFilesList.getFilePaths();
             adapter.notifyDataSetChanged();
         }
-        //RecyclerViewAdapter adapter = new RecyclerViewAdapter(filePaths, getActivity());
-        //mRecyclerView.setAdapter(adapter);
 
         return v;
     }
-
 }
