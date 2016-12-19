@@ -16,8 +16,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private static final String EXTRA_IMAGE_LIST = "edu.imagegallery";
     private static final String EXTRA_SELECTED_INDEX = "edu.imagegallery.image";
 
-    public RecyclerViewAdapter(ArrayList<String> imageList, Context context) {
-        this.imageList = imageList;
+    public RecyclerViewAdapter(Context context) {
+        imageList = ImageFilesList.getFilePaths();
         mContext = context;
     }
 

@@ -15,6 +15,7 @@ import java.io.File;
 
 public class BigImageFragment extends Fragment{
     private static File file;
+    private String filePath;
     static final String ARGUMENT_IMAGE_NUMBER = "arg_page_number";
 
     @Override
@@ -29,7 +30,8 @@ public class BigImageFragment extends Fragment{
         View v = inflater.inflate(R.layout.fragment_big_image, container, false);
         ImageView image = (ImageView)v.findViewById(R.id.iv_big_image);
 
-        String filePath = getArguments().getString(ARGUMENT_IMAGE_NUMBER);
+        filePath = getArguments().getString(ARGUMENT_IMAGE_NUMBER);
+        filePath = getArguments().getString(ARGUMENT_IMAGE_NUMBER);
         file = new File(filePath);
 
         String url = "file://" + filePath;
@@ -55,7 +57,10 @@ public class BigImageFragment extends Fragment{
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menu_item_delete:
-                if (file.delete()) getActivity().finish();
+                if (file.delete()){
+                    ImageFilesList.deleteImageFromList(filePath);
+                    getActivity().finish();
+                }
                 Toast.makeText(getActivity(), "deleted" + file.getAbsolutePath(), Toast.LENGTH_LONG).show();
                 return  true;
             default: return super.onOptionsItemSelected(item);
